@@ -5,7 +5,7 @@ import numeral from "numeral"
 import { PageContainer } from '@ant-design/pro-layout';
 import { list } from '@/services/bill';
 import { Table } from '@/components'
-import { Search } from './components'
+import { Search, Modal } from './components'
 import * as dayjs from 'dayjs'
 import styles from './style.less';
 
@@ -80,6 +80,7 @@ const BillList: FC<BillListProps> = (props) => {
           })
         }}
       />
+      <Modal visible={visible} onCancel={()=>setVisible(false)} onOk={()=>setVisible(false)} />
     </PageContainer>
   );
 };
