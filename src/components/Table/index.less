@@ -1,0 +1,162 @@
+// @import '~antd/lib/style/themes/default.less';
+
+:global {
+  .wm_table {
+    margin-top: 15px;
+    &_pic {
+      display: flex;
+      margin: -8px 0;
+    }
+    &_img {
+      display: inline-block;
+      width: 70px;
+      height: 40px;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      border-radius: 4px;
+      &_circle40 {
+        width: 40px;
+        border-radius: 50%;
+      }
+      &_width40 {
+        width: 40px;
+        border-radius: 4px;
+      }
+    }
+
+    &_text {
+      margin-left: 10px;
+      height: 40px;
+      line-height: 40px;
+    }
+    &_notice {
+      margin-left: 5px;
+      position: relative;
+      top: 1px;
+      color: #9797a1;
+    }
+    &_icon {
+      width: 18px;
+      margin-right: 5px;
+    }
+    &_price {
+      line-height: 20px;
+    }
+    &_op {
+      a {
+        margin-left: 5px;
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}
+.standardTable {
+  font-size: 14px;
+  :global(.ant-table) {
+    border-radius: 10px;
+  }
+
+  :global(.ant-table) {
+    border-radius: 10px;
+  }
+
+  .tableAlert {
+    margin-bottom: 16px;
+  }
+  :global(.ant-table-column-sort) {
+    background-color: transparent;
+  }
+  :global(.ant-table-thead > tr > th) {
+    font-weight: bold;
+  }
+  :global(th.ant-table-column-has-sorters) {
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}
+.has_b_border {
+  :global(.ant-table .ant-table-tbody > tr:nth-child(2n + 1)) {
+    background-color: #fff;
+  }
+  :global(.ant-table .ant-table-tbody > tr:hover) {
+    background-color: #f2f2f6;
+  }
+  :global(.ant-table-tbody > tr > td) {
+    border-bottom: 1px solid #f0f0f0;
+  }
+}
+
+.isfixed-page {
+  padding-bottom: 40px;
+  :global(.ant-table-pagination) {
+    position: fixed;
+    bottom: 0;
+    background-color: #fff;
+    box-shadow: 0 2px 10px 0 rgba(15, 12, 70, 0.16);
+    border-radius: 10px 10px 0 0;
+    left: 126px;
+    height: 60px;
+    right: 10px;
+    padding: 15px 15px 0;
+    z-index: 10;
+    margin-bottom: 0;
+  }
+}
+
+// .ishide-page {
+//   padding-bottom: 0;
+// }
+
+.isfixed-page-left-1 {
+  :global(.ant-table-pagination) {
+    left: 128px;
+  }
+}
+
+.isfixed-page-left-2 {
+  :global(.ant-table-pagination) {
+    left: 260px;
+  }
+}
+
+.isfixed-page-right-1 {
+  :global(.ant-table-pagination) {
+    right: 13px;
+  }
+}
+
+.isfixed-page-right-2 {
+  :global(.ant-table-pagination) {
+    right: 225px;
+  }
+}
+
+:global {
+  .notablestyle {
+    .ant-table {
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+      border-radius: 0px;
+      border: 0;
+      .ant-table-tbody {
+        > tr {
+          padding: 0;
+          margin: 0;
+          background-color: transparent !important;
+          border: 0;
+          > td {
+            padding: 0;
+            margin: 0;
+            border: 0;
+            background-color: transparent !important;
+          }
+        }
+      }
+    }
+  }
+}
