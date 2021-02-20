@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { Modal, Button, message, Input, Form, InputNumber, Radio, Select, Tooltip } from 'antd'
-import { billCategoryType, getTitleByValue } from '@/utils/type'
-import { insert, InsertParamsType } from '@/services/bill'
+import { billCategoryType, billType, getTitleByValue } from '@/utils/type'
+import { insert, InsertParamsType, UpdateParamsType, update } from '@/services/bill'
 
 
 const styles = require('../style.less')
@@ -14,11 +14,11 @@ interface props {
   visible: boolean
   onOk: () => void
   onCancel: () => void
+  billInfo?: any
 }
 
 const DetailModal: React.FC<any> = React.memo((props: props) => {
-  const { visible, billId } = props
-  const [showPublicUsers, setShowPublicUsers] = React.useState(false);
+  const { visible, billInfo } = props
   const [form] = Form.useForm();
   const formItemLayout = {
     labelCol: {
@@ -44,7 +44,11 @@ const DetailModal: React.FC<any> = React.memo((props: props) => {
   }
   const onFinish = (values: InsertParamsType) => {
     console.log(values)
-    insertBill(values)
+    if(billInfo !== null){
+      updateBill(values)
+    } else {
+      insertBill(values)
+    }
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -54,13 +58,33 @@ const DetailModal: React.FC<any> = React.memo((props: props) => {
   const onValuesChange = (changedValues: { [key: string]: any }) => {
   };
 
+  const updateBill = async (params:any) => {
+    await update({...params, id: billInfo.id})
+    message.success("修改成功")
+    props.onOk()
+  }
   const insertBill = async (params:InsertParamsType) => {
     await insert(params)
     message.success("添加成功")
+    props.onOk()
   }
-  // useMemo(()=>()=>{
-  //   console.log(1)
-  // }, [billId])
+
+  useEffect(()=>{
+    if(visible){
+      console.log(billInfo)
+      if(billInfo !== null){
+        form.setFieldsValue({
+          title: billInfo.title,
+          category: billInfo.category,
+          amount: billInfo.amount,
+          mark: billInfo.mark,
+          type: billInfo.type
+        })
+      } else {
+        form.resetFields()
+      }
+    }
+  }, [visible])
 
 
   return (
@@ -100,7 +124,8 @@ const DetailModal: React.FC<any> = React.memo((props: props) => {
           <FormItem
             {...formItemLayout}
             label="账单类型"
-            name="category"
+            initialValue={1}
+            name="type"
             rules={[
               {
                 required: true,
@@ -110,6 +135,29 @@ const DetailModal: React.FC<any> = React.memo((props: props) => {
           >
             <Select
               placeholder="请选择账单类型"
+              className={styles.select_status}
+              >
+              {getTitleByValue(billType).map((item: any) => (
+                <Option key={item[0]} value={item[0]}>
+                  {item[1]}
+                </Option>
+              ))}
+            </Select>
+          </FormItem>
+          <FormItem
+            {...formItemLayout}
+            label="账单种类"
+            initialValue="FOOD"
+            name="category"
+            rules={[
+              {
+                required: true,
+                message: "请选择账单种类",
+              },
+            ]}
+          >
+            <Select
+              placeholder="请选择账单种类"
               className={styles.select_status}
               >
               {getTitleByValue(billCategoryType).map((item: any) => (
@@ -135,7 +183,7 @@ const DetailModal: React.FC<any> = React.memo((props: props) => {
           <FormItem
             {...formItemLayout}
             label="备注"
-            name="client"
+            name="mark"
           >
             <TextArea
               style={{ minHeight: 32 }}

@@ -109,7 +109,13 @@ export default defineConfig({
               routes: [
                 {
                   path: '/',
-                  redirect: '/bill/bill-list',
+                  redirect: '/bill/bill-statistic',
+                },
+                {
+                  name: 'bill-statistic',
+                  icon: 'bill-statistic',
+                  path: '/bill/bill-statistic',
+                  component: './bill/bill-statistic',
                 },
                 {
                   name: 'bill-list',

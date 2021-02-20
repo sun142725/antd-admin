@@ -1,7 +1,7 @@
-import Modal from './Modal'
+import BillModal from './Modal'
 import Search from './Search'
 
 export {
-  Modal,
+  BillModal,
   Search
 }

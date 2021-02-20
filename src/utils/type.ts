@@ -8,7 +8,7 @@ export const getTitleByValue = (dataSource: Map<any,any>, val?: any)=>{
   }
 }
 
-// 账单类型
+// 账单种类 --- 支出
 export const billCategoryType = new Map([
   ["FOOD", "饮食"],
   ["LIVE", "居住"],
@@ -19,4 +19,15 @@ export const billCategoryType = new Map([
   ["MAKEUP", "护肤"],
   ["LIFE", "生活缴费"],
   ["OTHER", "其他"],
+])
+// 账单种类 --- 收入
+export const billIncomeCategoryType = new Map([
+  ["WAGES", "工资"],
+  ["MANAGE_MONEY", "理财"],
+  ["OTHER", "其他"],
+])
+// 账单类型
+export const billType = new Map([
+  [1, "支出"],
+  [2, "收入"],
 ])

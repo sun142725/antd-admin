@@ -8,6 +8,7 @@ export default {
   'menu.register': '注册',
   'menu.register.result': '注册结果',
   'menu.bill': '账单',
+  'menu.bill.bill-statistic': '账单统计',
   'menu.bill.bill-list': '账单列表',
   'menu.dashboard': 'Dashboard',
   'menu.dashboard.analysis': '分析页',

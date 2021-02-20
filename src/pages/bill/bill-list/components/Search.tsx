@@ -13,10 +13,12 @@ interface searchProps {
 }
 
 export default ({ onSearch, onClick }: searchProps) => {
-  const [params, setParams] = useState({ nick: '', category: "0" })
+  const [params, setParams] = useState({ title: '', category: "0" })
 
   const handleParams = (params: any) => {
-    onSearch({ ...params, category: params.category || undefined })
+    params.title = params.title ? params.title : undefined
+    params.category = params.category != '0' ? params.category : undefined
+    onSearch({...params})
   }
 
   // 类型与状态变化直接搜索
@@ -30,7 +32,7 @@ export default ({ onSearch, onClick }: searchProps) => {
       handleParams(params)
     },
     500,
-    [params.nick]
+    [params.title]
   )
   return (
     <div className={styles.data_search_criteria}>
@@ -38,9 +40,9 @@ export default ({ onSearch, onClick }: searchProps) => {
         <Input
           style={{ width: '210px' }}
           placeholder={`请输入账单名称查询`}
-          value={params.nick}
+          value={params.title}
           suffix={<SearchOutlined style={{ cursor: 'pointer' }} />}
-          onChange={e => setParams({ ...params, nick: e.target.value })}
+          onChange={e => setParams({ ...params, title: e.target.value })}
         />
         <Select
           defaultValue={params.category}
