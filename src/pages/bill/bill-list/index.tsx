@@ -118,7 +118,7 @@ const BillList: FC<BillListProps> = (props) => {
       <Search onSearch={handleSearch} onClick={()=>addBill()} />
       <Table
         columns={columns}
-        dataSource={{...page, pageIndex: page.pageNum, totalCount: data.total,list: data.list || []}}
+        dataSource={{...page, pageIndex: page.pageNum, totalCount: data?.total,list: data?.list || []}}
         rowKey="id"
         onChange={(pagination: any = {}) => {
           setPage({
