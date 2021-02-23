@@ -18,14 +18,12 @@ export const billCategoryType = new Map([
   ["CLOTHES", "服饰"],
   ["MAKEUP", "护肤"],
   ["LIFE", "生活缴费"],
+  ["FRIEND", "人情往来"],
+  ["WAGES", "工作"],
+  ["MANAGE_MONEY", "理财投资"],
   ["OTHER", "其他"],
 ])
-// 账单种类 --- 收入
-export const billIncomeCategoryType = new Map([
-  ["WAGES", "工资"],
-  ["MANAGE_MONEY", "理财"],
-  ["OTHER", "其他"],
-])
+
 // 账单类型
 export const billType = new Map([
   [1, "支出"],

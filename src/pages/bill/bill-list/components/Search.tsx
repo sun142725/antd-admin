@@ -16,7 +16,6 @@ export default ({ onSearch, onClick }: searchProps) => {
   const [params, setParams] = useState({ title: '', category: "0" })
 
   const handleParams = (params: any) => {
-    params.title = params.title ? params.title : undefined
     params.category = params.category != '0' ? params.category : undefined
     onSearch({...params})
   }
