@@ -153,11 +153,13 @@ class Analysis extends Component<AnalysisProps, AnalysisState> {
 
     const activeKey = currentTabKey || (offlineData[0] && offlineData[0].name);
     return (
-      <GridContent>
+      <GridContent>1
         <React.Fragment>
+          1
           <Suspense fallback={<PageLoading />}>
             <IntroduceRow loading={loading} visitData={visitData} />
           </Suspense>
+          销售额/访问量
           <Suspense fallback={null}>
             <SalesCard
               rangePickerValue={rangePickerValue}
@@ -168,6 +170,7 @@ class Analysis extends Component<AnalysisProps, AnalysisState> {
               selectDate={this.selectDate}
             />
           </Suspense>
+          3
           <Row
             gutter={24}
             style={{
@@ -196,6 +199,7 @@ class Analysis extends Component<AnalysisProps, AnalysisState> {
               </Suspense>
             </Col>
           </Row>
+          5
           <Suspense fallback={null}>
             <OfflineData
               activeKey={activeKey}

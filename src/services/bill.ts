@@ -35,4 +35,17 @@ export type DelParamsType = {
 export async function billDelete(params: DelParamsType) {
   return request.post('http://localhost:7001/api/bill/delete', params);
 }
-
+export type GetBillStaticType = {
+  type: string,
+  startTime: string
+  endTime: string
+};
+export async function getBillStatic(params: any) {
+  return request.post('http://localhost:7001/api/bill/getBillStatic', params);
+}
+export type CalcBillByCurrentMonthType = {
+  type: string|number
+};
+export async function calcBillByCurrentMonth(params: CalcBillByCurrentMonthType) {
+  return request.post('http://localhost:7001/api/bill/calcBillByCurrentMonth', params);
+}

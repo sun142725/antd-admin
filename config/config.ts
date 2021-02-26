@@ -354,6 +354,8 @@ export default defineConfig({
   title: false,
   ignoreMomentLocale: true,
   proxy: proxy[REACT_APP_ENV || 'dev'],
+  outputPath: "admin-web",
+  publicPath: "/public/admin-web/",
   manifest: {
     basePath: '/',
   },
