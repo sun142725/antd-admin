@@ -14,6 +14,7 @@ export type InsertParamsType = {
   title: string
   category: string
   amount: number
+  gmt_created: string
 };
 export async function insert(params: InsertParamsType) {
   return request.post('http://localhost:7001/api/bill/insert', params);
@@ -25,6 +26,7 @@ export type UpdateParamsType = {
   category?: string
   type?: string
   amount?: number
+  gmt_created: string
 };
 export async function update(params: UpdateParamsType) {
   return request.post('http://localhost:7001/api/bill/update', params);
@@ -43,9 +45,6 @@ export type GetBillStaticType = {
 export async function getBillStatic(params: any) {
   return request.post('http://localhost:7001/api/bill/getBillStatic', params);
 }
-export type CalcBillByCurrentMonthType = {
-  type: string|number
-};
-export async function calcBillByCurrentMonth(params: CalcBillByCurrentMonthType) {
+export async function calcBillByCurrentMonth(params: GetBillStaticType) {
   return request.post('http://localhost:7001/api/bill/calcBillByCurrentMonth', params);
 }

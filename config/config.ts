@@ -259,8 +259,8 @@ export default defineConfig({
               ],
             },
             {
-              name: 'exception',
-              icon: 'warning',
+              // name: 'exception',
+              // icon: 'warning',
               path: '/exception',
               routes: [
                 {

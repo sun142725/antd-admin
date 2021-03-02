@@ -42,17 +42,25 @@ const BillList: FC = (props) => {
       endTime: rangePickerValue![1]?.format('YYYY-MM-DD') + " 23:59:59",
       type: type
     }).then(res=>{
-      setsalesData(res.data.map((v:any)=>{
-        v.date = v.date.replace(/\-/g, "~")
-        v.category = getTitleByValue(billCategoryType, v.category)
-        return v
-      }))
+      if(res && res.code === 0){
+        setsalesData(res.data.map((v:any)=>{
+          v.date = v?.date.replace(/\-/g, "~")
+          v.category = getTitleByValue(billCategoryType, v?.category)
+          return v
+        }))
+      }
     })
   }
   // 获取月度统计
   const getcalcBillByCurrentMonth = async ()=>{
-    const result = await calcBillByCurrentMonth({type})
-    setSalesMonth(result.data)
+    const result = await calcBillByCurrentMonth({
+      startTime: rangePickerValue![0]?.format('YYYY-MM-DD') + " 00:00:00",
+      endTime: rangePickerValue![1]?.format('YYYY-MM-DD') + " 23:59:59",
+      type: type
+    })
+    setSalesMonth(result?.data.sort(function(val1:any, val2: any) {
+      return val2.amount - val1.amount
+    }))
   }
   const selectDate = (type: 'today' | 'week' | 'month' | 'year') => {
     setRangePickerValue(getTimeDistance(type))

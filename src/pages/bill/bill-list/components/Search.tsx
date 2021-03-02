@@ -45,9 +45,10 @@ export default ({ onSearch, onClick }: searchProps) => {
         />
         <Select
           defaultValue={params.category}
+          style={{width: '100px'}}
           className={styles.select_status}
           onChange={val => setParams({ ...params, category: val })}
-          dropdownMatchSelectWidth={100}>
+          >
             <Option value={"0"}>全部</Option>
           {getTitleByValue(billCategoryType).map((item: any) => (
             <Option key={item[0]} value={item[0]}>

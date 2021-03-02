@@ -1,13 +1,15 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { Modal, Button, message, Input, Form, InputNumber, Radio, Select, Tooltip } from 'antd'
+import { Modal, Button, message, Input, Form, DatePicker, Radio, Select, Tooltip } from 'antd'
 import { billCategoryType, billType, getTitleByValue } from '@/utils/type'
 import { insert, InsertParamsType, UpdateParamsType, update } from '@/services/bill'
+import moment from 'moment'
 
 
 const styles = require('../style.less')
 const FormItem = Form.Item;
 const { Option } = Select;
 const { TextArea } = Input
+const { RangePicker } = DatePicker;
 
 interface props {
   billId?: string
@@ -44,6 +46,7 @@ const DetailModal: React.FC<any> = React.memo((props: props) => {
   }
   const onFinish = (values: InsertParamsType) => {
     console.log(values)
+    values.gmt_created = moment(values.gmt_created).format("YYYY-MM-DD HH:mm:ss")
     if(billInfo !== null){
       updateBill(values)
     } else {
@@ -166,6 +169,20 @@ const DetailModal: React.FC<any> = React.memo((props: props) => {
                 </Option>
               ))}
             </Select>
+          </FormItem>
+          <FormItem
+            {...formItemLayout}
+            label="账单日期"
+            initialValue={moment()}
+            name="gmt_created"
+            rules={[
+              {
+                required: true,
+                message: "请选择账单日期",
+              },
+            ]}
+          >
+            <DatePicker showTime={{format: "HH:mm:ss"}}   />
           </FormItem>
           <FormItem
             {...formItemLayout}

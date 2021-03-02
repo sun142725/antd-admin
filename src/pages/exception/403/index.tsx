@@ -11,9 +11,9 @@ export default () => (
     }}
     subTitle="Sorry, you don't have access to this page."
     extra={
-      <Link to="/">
-        <Button type="primary">Back to home</Button>
-      </Link>
+      <div onClick={()=>history.go(-1)}>
+        <Button type="primary">Back to pre Page</Button>
+      </div>
     }
   />
 );

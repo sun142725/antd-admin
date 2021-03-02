@@ -14,7 +14,7 @@ interface BillListProps {}
 
 const BillList: FC<BillListProps> = (props) => {
   const [data, setData] = useState({total: 0, list: []});
-  const [page, setPage] = useState({pageSize: 15, pageNum: 1, update: true})
+  const [page, setPage] = useState({pageSize: 15, pageNum: 1, update: false})
   const [visible, setVisible] = useState(false)
   const [billInfo, setBillInfo] = useState(null)
   const columns = [

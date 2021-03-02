@@ -3,7 +3,7 @@
  * 更详细的 api 文档: https://github.com/umijs/umi-request
  */
 import { extend } from 'umi-request';
-import { notification } from 'antd';
+import { message, notification } from 'antd';
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -27,6 +27,7 @@ const codeMessage = {
  * 异常处理程序
  */
 const errorHandler = (error: { response: Response }): Response => {
+  console.log('接口错误', error)
   const { response } = error;
   if (response && response.status) {
     const errorText = codeMessage[response.status] || response.statusText;
@@ -55,6 +56,20 @@ const request = extend({
     Authorization: `Bearer ${localStorage.token}`,
   }
 });
+request.interceptors.request.use((url, options)=>{
+  console.log("request", options)
+  return {
+    url: url,
+    options: {...options}
+  }
+})
+request.interceptors.response.use(async (response)=>{
+  const data = await response.clone().json();
+  if(data.code !== 0){
+    message.error(data.describe || "系统异常")
+  }
+  return response
+})
 
 
 export default {

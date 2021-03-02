@@ -83,7 +83,7 @@ const SalesCard = ({
                   月度支出统计
                 </h4>
                 <ul className={styles.rankingList}>
-                  {salesMonth.map((item, i) => (
+                  {salesMonth?.map((item, i) => (
                     <li key={item.category}>
                       <span className={`${styles.rankingItemNumber} ${i < 3 ? styles.active : ''}`}>
                         {i + 1}
@@ -121,7 +121,7 @@ const SalesCard = ({
                 月度收入统计
                 </h4>
                 <ul className={styles.rankingList}>
-                  {salesMonth.map((item, i) => (
+                  {salesMonth?.map((item, i) => (
                     <li key={item.category}>
                       <span className={`${styles.rankingItemNumber} ${i < 3 ? styles.active : ''}`}>
                         {i + 1}
@@ -129,6 +129,7 @@ const SalesCard = ({
                       <span className={styles.rankingItemTitle} title={item.title}>
                         {getTitleByValue(billCategoryType ,item.category)}
                       </span>
+                      <span style={{display: 'block', width: '50px'}}>{item.count}笔</span>
                       <span>{numeral(item.amount).format('0,0')}元</span>
                     </li>
                   ))}
