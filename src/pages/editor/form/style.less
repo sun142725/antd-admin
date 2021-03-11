@@ -1,0 +1,32 @@
+.editorBd{
+  background-color: #fff;
+}
+// 中间目标区域
+.targetBox{
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  background-color: #fff;
+  position: relative;
+}
+
+.select{
+  background-color: red !important;
+  box-shadow: 0 0 5px 2px blue !important;
+}
+:global {
+  .select{
+    background-color: red;
+    box-shadow: 0 0 5px 2px blue;
+  }
+  .handle.fix{
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+.fix{
+  position: absolute;
+  left: 0;
+  top: 0;
+}

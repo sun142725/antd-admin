@@ -259,9 +259,10 @@ export default defineConfig({
               ],
             },
             {
-              // name: 'exception',
-              // icon: 'warning',
+              name: 'exception',
+              icon: 'warning',
               path: '/exception',
+              hideInMenu: true,
               routes: [
                 {
                   path: '/',
@@ -336,6 +337,12 @@ export default defineConfig({
                   icon: 'smile',
                   path: '/editor/koni',
                   component: './editor/koni',
+                },
+                {
+                  name: 'form',
+                  icon: 'smile',
+                  path: '/editor/form',
+                  component: './editor/form',
                 },
               ],
             },

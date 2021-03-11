@@ -66,7 +66,7 @@ request.interceptors.request.use((url, options)=>{
 request.interceptors.response.use(async (response)=>{
   const data = await response.clone().json();
   if(data.code !== 0){
-    message.error(data.describe || "系统异常")
+    // message.error(data.describe || "系统异常")
   }
   return response
 })
