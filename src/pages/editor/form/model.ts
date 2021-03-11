@@ -28,13 +28,12 @@ const Model: ModelType = {
   },
 
   effects: {
-    *pushWeiget({ param  }, { call, put, select }) {
+    *pushWeiget({ param  }, { put, select }) {
       const weigets: any[] = yield select((state: any) => state.formDnd.weigets)
-      console.log('chufann', param, weigets)
-      // const id = Math.floor(Math.random()*10)
+      const obj = {...param, id: weigets.length.toString() + Math.floor(Math.random()*10)}
       yield put({
         type: 'saveWeigets',
-        payload: [...weigets, param],
+        payload: [...weigets, obj],
       });
     },
     *updateWeiget({ param  }, {select, put}) {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useDrop } from 'react-dnd';
 import { getComponentByName } from './source';
 import { connect } from 'umi';
@@ -7,20 +7,10 @@ import Props from './common/props/index';
 import styles from '../style.less';
 import Draggable from 'react-draggable'
 import { relativeTimeThreshold } from 'moment';
+import update from 'immutability-helper';
+import { Card } from './Card'
 
 
-const style = {
-  height: '100%',
-  width: '100%',
-  textAlign: 'center',
-  backgroundColor: '#fff',
-  position: 'relative'
-};
-const fixStyle = {
-  position: 'absolute',
-  top: 0,
-  left: 0
-}
 const TargetBox = (props: any) => {
   const { weigets, dispatch } = props;
   const [sellectIndex, setSelectIndex] = useState('');
@@ -85,10 +75,36 @@ const TargetBox = (props: any) => {
       payload: index ,
     });
   };
+  const moveCard = useCallback((dragIndex, hoverIndex) => {
+    const dragCard = weigets[dragIndex];
+    console.log('触发', update(weigets, {
+      $splice: [
+          [dragIndex, 1],
+          [hoverIndex, 0, dragCard],
+      ],
+  }))
+    dispatch({
+      type: 'formDnd/saveWeigets',
+      payload: update(weigets, {
+        $splice: [
+            [dragIndex, 1],
+            [hoverIndex, 0, dragCard],
+        ],
+    })
+    });
 
+}, [weigets]);
   return (
     <div className={"targetBox"} class="targetBox" ref={drop} style={{ height: '100%', opacity }} role="TargetBox">
-      {weigets.map((item: any, index: any) => (
+      {weigets.map((item: any, index: any) => !item.fixed ? (<Card key={item.id} index={index} id={item.id} moveCard={moveCard}>
+        <Common
+              is={item.name}
+              {...item}
+              class="handle"
+              style={(sellectIndex === index ? { boxShadow: '0 0 5px 2px blue' } : {})}
+              onClick={() => handleClick(item, index)}
+            />
+      </Card>) : (
         <Draggable
           handle=".handle"
           bounds="parent"

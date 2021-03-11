@@ -1,5 +1,6 @@
 export default {
   name: "Input",
+  fixed: true,
   addonAfter: undefined,
   addonBefore: undefined,
   allowClear: false,

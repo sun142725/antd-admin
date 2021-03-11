@@ -1,6 +1,7 @@
 export default {
   name: "Button",
   value: "button",
+  fixed: false,
   block: false,
   danger: false,
   disabled: false,
