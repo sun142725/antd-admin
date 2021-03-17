@@ -10,6 +10,7 @@ import TargetBox from './components/TargetBox';
 import EditorSiderbar from './components/EditorSidebar'
 import styles from './style.less';
 import Draggable, { DraggableCore } from 'react-draggable'
+import Demo from './demoForm'
 
 export default () => {
   return (
@@ -22,7 +23,8 @@ export default () => {
             <button>查看json</button>
           </Col>
         </Row>
-        <Row className={styles.editorBd}>
+        <Demo />
+        {/* <Row className={styles.editorBd}>
           <DndProvider backend={HTML5Backend}>
             <Col span={4} className="editorSidebar">
               <ResourceDrag />
@@ -34,7 +36,7 @@ export default () => {
                <EditorSiderbar />
             </Col>
           </DndProvider>
-        </Row>
+        </Row> */}
         221
       </div>
     </PageContainer>
