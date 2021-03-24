@@ -7,10 +7,10 @@ const style = {
     margin: '0.5rem',
 };
 
-export const SourceBox = ({ name, children }: any) => {
+export const SourceBox = ({ name, id, children }: any) => {
     const [forbidDrag, setForbidDrag] = useState(false);
     const [{ isDragging }, drag, preview] = useDrag(() => ({
-        item: { type: "component", name },
+        item: { type: "component", name, id },
         canDrag: !forbidDrag,
         collect: (monitor) => ({
             isDragging: monitor.isDragging(),

@@ -12,6 +12,7 @@ export interface ModelType {
   effects: {
     pushWeiget: Effect;
     updateWeiget: Effect;
+    delWeiget: Effect;
   };
   reducers: {
     saveWeigets: Reducer<StateType>;
@@ -30,7 +31,7 @@ const Model: ModelType = {
   effects: {
     *pushWeiget({ param  }, { put, select }) {
       const weigets: any[] = yield select((state: any) => state.formDnd.weigets)
-      const obj = {...param, id: weigets.length.toString() + Math.floor(Math.random()*10)}
+      const obj = {...param, rId: new Date().getTime()+param.id}
       yield put({
         type: 'saveWeigets',
         payload: [...weigets, obj],
@@ -40,23 +41,39 @@ const Model: ModelType = {
       const weigets: any[] = yield select((state: any) => state.formDnd.weigets)
       const modifyId: any = yield select((state: any) => state.formDnd.modifyId)
       const newWeigets = weigets.map((v, index)=>{
-        if(index === modifyId){
-          return Object.assign(v, param)
+        if(v.rId === modifyId){
+          console.log('param', param)
+          return param
         }
         return v
       })
+      console.log('newweiget', newWeigets)
       yield put({
         type: 'saveWeigets',
         payload: [...newWeigets],
       });
+    },
+    *delWeiget({}, {select, put}) {
+      const weigets: any[] = yield select((state: any) => state.formDnd.weigets)
+      const modifyId: any = yield select((state: any) => state.formDnd.modifyId)
+      const newWeigets = weigets.filter(v=>v.rId !== modifyId)
+      yield put({
+        type: 'saveWeigets',
+        payload: [...newWeigets],
+      });
+      put({
+        type: 'setModifyId',
+        payload: ""
+      })
     }
   },
 
   reducers: {
     saveWeigets(state: any, action): StateType {
+      console.log('action', action)
       return {
         ...state,
-        weigets: action.payload,
+        weigets: [...action.payload],
       };
     },
     setModifyId(state: any, action: any): StateType{
