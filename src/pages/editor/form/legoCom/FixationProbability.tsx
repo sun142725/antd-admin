@@ -1,14 +1,33 @@
-
-import { useState } from 'react';
-
-import { Form, Input, Button, Table } from 'antd';
-import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import { Form, Input, Button, Table, Select } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
 
 const FormItem = Form.Item;
+const { Option } = Select
 
 export default (props) => {
-  const [flag, setFlag] = useState();
-
+  const { type, nameLabel, prizeLabel, probabilityLabel, stateLabel, help, isShowAddBtn, prizes } = props
+  const columns = [
+  {
+    title: nameLabel,
+    render: (val, result, index)=>`${type === 0? '道具' : '奖品'}${index+1}`
+  },
+  {
+    title: prizeLabel,
+    render: (val, result)=>(<FormItem name={[result.name, "prize_id"]} noStyle>
+      <Select defaultValue="1">
+        <Option value="1">奖品1</Option>
+        <Option value="2">奖品2</Option>
+        <Option value="3">谢谢参与</Option>
+      </Select>
+    </FormItem>)
+  },
+  {
+    title: probabilityLabel,
+    render: (val, result)=>(<FormItem name={[result.name, "probability_value"]} noStyle>
+      <Input addonAfter={"%"}/>
+    </FormItem>)
+  },
+];
   const formItemLayout = {
     labelCol: {
       xs: { span: 24 },
@@ -24,59 +43,18 @@ export default (props) => {
   return (
     <>
       <Form.List
-        name="linkLists"
-        rules={[
-          {
-            validator: async (_, linkLists) => {
-              if (!linkLists || linkLists.length < 1) {
-                return Promise.reject(new Error('跳转链接至少选择一个'));
-              }
-            },
-          },
-        ]}
-      >
+      initialValue={prizes}
+      {...formItemLayout}
+        name="prizes">
         {(fields, { add, remove }, { errors }) => (
           <>
-            {fields.map((field, index) => (
-              <Form.Item
-                {...formItemLayout}
-                label={`签到跳转${index + 1}`}
-                required={true}
-                key={field.key}
-              >
-                <Form.Item
-                  {...field}
-                  validateTrigger={['onChange', 'onBlur']}
-                  rules={[
-                    {
-                      required: true,
-                      whitespace: true,
-                      message: '跳转链接不可为空',
-                    },
-                  ]}
-                  noStyle
-                >
-                  <Input placeholder="请输入跳转链接" style={{ width: '60%' }} />
-                </Form.Item>
-                {fields.length > 1 ? (
-                  <MinusCircleOutlined
-                    className="dynamic-delete-button"
-                    onClick={() => remove(field.name)}
-                  />
-                ) : null}
-                <div>
-                  当参与次数为0时，点击参与按钮可跳转至该页面；每日仅首次进入才可获得1次参与机会
-                </div>
-              </Form.Item>
-            ))}
+          {console.log('fields', fields)}
+            {fields.length > 0 && <Table columns={columns} dataSource={fields} pagination={false} locale={undefined} />}
             <Form.Item wrapperCol = {{
                   xs: { span: 24, offset: 0 },
                   sm: { span: 10, offset: 7 },
                 }}>
-              <Button type="dashed" onClick={() => add()} icon={<PlusOutlined />}>
-                增加跳转链接
-              </Button>
-              <div>设置多个签到跳转，用户点击签到时根据跳转页1、2、3序列跳转，依次类推</div>
+              {isShowAddBtn && <Button type="dashed" onClick={() => add()} icon={<PlusOutlined />}>增加奖项</Button>}
               <Form.ErrorList errors={errors} />
             </Form.Item>
           </>

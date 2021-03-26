@@ -8,7 +8,7 @@ export const dataSource = [
         id: '1', // 控件ID
         name: "limit_daily",
         desc: "每天最多参与次数",
-        logo: "",
+        logo: "每天最多参与",
         draglogo: "",
       },
     ],
@@ -20,14 +20,14 @@ export const dataSource = [
         id: '2', // 控件ID
         name: "win_daily_times",
         desc: "每人每天中奖次数",
-        logo: "",
+        logo: "单人每天中奖",
         draglogo: "",
       },
       {
         id: '3', // 控件ID
         name: "sloganCom",
         desc: "广告设置组件",
-        logo: "",
+        logo: "广告设置",
         draglogo: "",
       },
     ],
@@ -35,32 +35,33 @@ export const dataSource = [
   {
     title: "算法组件",
     weigets: [
-      {
-        id: "calc1",
-        name: "随机算法",
-        desc: "随机算法",
-        logo: "",
-        draglogo: ""
-      },
+      // {
+      //   id: "calc1",
+      //   name: "随机算法",
+      //   desc: "随机算法",
+      //   logo: "",
+      //   draglogo: ""
+      // },
       {
         id: "calc2",
         name: "固定概率",
-        desc: "适用于大转盘",
-        logo: "",
-        draglogo: ""
-      },{
-        id: "calc3",
-        name: "阶梯概率",
-        desc: "阶梯概率",
-        logo: "",
-        draglogo: ""
-      },{
-        id: "calc4",
-        name: "合成概率",
-        desc: "随机算法",
+        desc: "固定概率、当前以大转盘为例子",
         logo: "",
         draglogo: ""
       },
+      // {
+      //   id: "calc3",
+      //   name: "阶梯概率",
+      //   desc: "阶梯概率",
+      //   logo: "",
+      //   draglogo: ""
+      // },{
+      //   id: "calc4",
+      //   name: "合成概率",
+      //   desc: "随机算法",
+      //   logo: "",
+      //   draglogo: ""
+      // },
     ]
   }
 ];

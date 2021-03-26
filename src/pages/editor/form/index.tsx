@@ -28,7 +28,7 @@ const TestDnd = (props: any) => {
         <Row className={styles.editorHd}>
           <Col span={24}>
             <button onClick={()=>setPreview(!preview)}>{preview ? "展示编辑界面": "预览"}</button>
-            <button>清空</button>
+            {/* <button>清空</button> */}
             <button onClick={showJson}>查看json</button>
           </Col>
         </Row>
@@ -46,7 +46,7 @@ const TestDnd = (props: any) => {
             </Col>
           </DndProvider>
         </Row>)}
-        221
+        {/* 221 */}
       </div>
     </PageContainer>
   );

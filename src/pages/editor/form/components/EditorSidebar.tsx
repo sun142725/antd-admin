@@ -14,8 +14,6 @@ import {
   TreeSelect,
   Switch,
 } from 'antd';
-import FormItem from 'antd/lib/form/FormItem';
-import config from 'config/config';
 
 const Container = function (props) {
   const { dispatch, modifyId, weigets } = props;
@@ -55,6 +53,24 @@ const Container = function (props) {
           </Checkbox.Group>
         case 'Switch':
           return <Switch defaultChecked={weiget?.config[item.key]}/>;
+        case 'Radio':
+          return <Radio.Group>
+            {option.map((v, i)=><Radio key={i} value={v.value}>{v.title}</Radio>)}
+          </Radio.Group>;
+        case "FormList":
+          return <Form.List initialValue={weiget?.config[item.key]} name={item.key}>
+
+        {(fields, { add, remove }, { errors }) => (
+          <>
+            <Form.Item wrapperCol = {{
+                  xs: { span: 24, offset: 0 },
+                  sm: { span: 10, offset: 7 },
+                }}>
+              <Button type="dashed" onClick={() => add()}>增加奖项</Button>
+            </Form.Item>
+          </>
+        )}
+          </Form.List>
         default:
           return <span>未配置的渲染类型</span>;
       }

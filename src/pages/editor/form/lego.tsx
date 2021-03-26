@@ -1,11 +1,10 @@
 
 import React, { useEffect } from 'react';
-import { Button,  Input, Form, DatePicker, Select } from 'antd';
+import { Button,  Input, Form, DatePicker, Select, Modal } from 'antd';
 import moment from 'moment';
-import DemoActivity from './demoCom/activityMode'
 import { connect } from 'umi';
 import Common from './components/common/common';
-import SloganCtrl from './legoCom/SloganCtrl'
+import FllowJoin from './legoCom/FllowJoin'
 
 const FormItem = Form.Item;
 const { Option } = Select;
@@ -33,6 +32,16 @@ const LegoPreview = (props: any) => {
 
   const onValuesChange = (changedValues: { [key: string]: any }) => {};
 
+  const cancel = () => {
+    Modal.success({
+      centered: true,
+      maskClosable: true,
+      okText: <span style={{display: 'none'}}>22</span>,
+      cancelText: null,
+      icon: false,
+      content: <img src="https://www.baidu.com/img/flexible/logo/pc/result.png" alt=""/>
+    })
+  }
 
   return (
     <>
@@ -45,8 +54,7 @@ const LegoPreview = (props: any) => {
         onFinishFailed={onFinishFailed}
         onValuesChange={onValuesChange}
       >
-        {/* <DemoActivity /> */}
-        <SloganCtrl />
+        {/* <FllowJoin /> */}
       {weigets.map((item, index)=>
             <Common
             key={index}
@@ -58,7 +66,7 @@ const LegoPreview = (props: any) => {
           <Button type="primary" htmlType="submit">
             保存
           </Button>
-          <Button style={{ marginLeft: 8 }}>取消</Button>
+          <Button style={{ marginLeft: 8 }} onClick={cancel}>取消</Button>
         </FormItem>
       </Form>
     </>

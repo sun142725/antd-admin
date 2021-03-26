@@ -9,7 +9,7 @@ export default memo(function Container() {
           dataSource.map((v, i)=>(<div key={i}>
             <div>{v.title}</div>
             <div className="content">
-              {v.weigets?.map((item: any ,index: number)=><SourceBox key={index} name={item.name} id={item.id}><Tooltip title={item.desc}>{item.name}</Tooltip></SourceBox>)}
+              {v.weigets?.map((item: any ,index: number)=><SourceBox key={index} name={item.name} id={item.id}><Tooltip title={item.desc}>{item.logo ? <img src={item.logo} alt={item.logo} /> :item.name}</Tooltip></SourceBox>)}
             </div>
           </div>))
         }

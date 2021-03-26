@@ -7,6 +7,7 @@ import FormItem from './props/fromItem'
 const LimitDaily = lazy(()=>import('../../legoCom/LimitDaily'));
 const WinDailyTimes = lazy(()=>import('../../legoCom/WinDailyTimes'));
 const SloganCtrl = lazy(()=>import('../../legoCom/SloganCtrl'));
+const FixationProbability = lazy(()=>import('../../legoCom/FixationProbability'));
 
 
 interface props {
@@ -31,6 +32,8 @@ export default (props: any) => {
         return <WinDailyTimes {...props.config} />
       case 'sloganCom':
         return <SloganCtrl {...props.config} />
+      case '固定概率':
+        return <FixationProbability {...props.config} />
       default:
         return <span style={{color: 'red'}}>!!!未配置的渲染类型</span>
     }
