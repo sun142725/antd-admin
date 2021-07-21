@@ -22,3 +22,35 @@ export const isAntDesignProOrDev = (): boolean => {
 };
 
 export const getPageQuery = () => parse(window.location.href.split('?')[1]);
+
+// 得到光标前的位置
+export function getCaretPosition(elem) {
+  const d = document as any
+  let cursorPos = 0
+  if (d.selection) {
+    // IE Support
+    elem.focus()
+    const selectRange = d.selection.createRange()
+    selectRange.moveStart('character', -elem.value.length)
+    cursorPos = selectRange.text.length
+  } else if (elem.selectionStart || elem.selectionStart == '0') {
+    // Firefox support
+    cursorPos = elem.selectionStart
+  }
+  return cursorPos
+}
+
+// 设置光标位置
+export function setCaretPosition(ctrl, pos) {
+  if (ctrl.setSelectionRange) {
+    ctrl.focus()
+    ctrl.setSelectionRange(pos, pos)
+  } else if (ctrl.createTextRange) {
+    var range = ctrl.createTextRange()
+    range.collapse(true)
+    range.moveEnd('character', pos)
+    range.moveStart('character', pos)
+    range.select()
+  }
+}
+

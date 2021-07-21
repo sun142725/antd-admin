@@ -42,6 +42,12 @@ const LegoPreview = (props: any) => {
       content: <img src="https://www.baidu.com/img/flexible/logo/pc/result.png" alt=""/>
     })
   }
+  const getValue = (key) => {
+    return form.getFieldValue(key)
+  }
+  const setValues = (option: any)=>{
+    form.setFieldsValue(option)
+  }
 
   return (
     <>
@@ -54,7 +60,7 @@ const LegoPreview = (props: any) => {
         onFinishFailed={onFinishFailed}
         onValuesChange={onValuesChange}
       >
-        {/* <FllowJoin /> */}
+        {/* <FllowJoin getValue={getValue} setValues={setValues} /> */}
       {weigets.map((item, index)=>
             <Common
             key={index}
